@@ -6,7 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{% static 'app1/hotels.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <title>Kausik</title>
 </head>
 
@@ -26,8 +30,18 @@
         </section>
 
         <div class="auth">
-            <a href="#" class="login">Login</a>
-            <a href="#" class="register">Register</a>    
+            {% if username %}
+            <div style="display: flex; ">
+                <div class="user" style="display:  flex; gap: 10px; margin-right: 20px ;align-items: center; flex-direction: column; margin-bottom: 5px;">
+                    <i class="ri-user-fill" style="border: 1px solid rgb(210, 210, 210); padding: 10px; border-radius: 50%; background-color: rgb(224, 224, 224); font-size: 10px;"></i> <p style="  font-family: Arial, Helvetica, sans-serif;"> {{ username }}</p>
+                </div>
+                <a href="{% url 'logout' %}" style=" font-size: large; text-decoration: none; margin-right: -20px; border-radius: 10px; padding: 5px 20px; height: 40px; margin-top:10px ; " class="login">Logout</a>
+            </div>
+
+            {% else %}
+            <a href="{% url 'login' %}" class="login" style=" font-size: large; margin-right:  ; text-decoration: none; border-radius: 10px; padding: 10px 50px;">Login</a>
+            <a href="{% url 'register' %}" class="register" style=" font-size: large; text-decoration: none; margin-right: -20px; border-radius: 10px; padding: 10px 50px;">Register</a>    
+            {% endif %}   
         </div>
     </nav>
 
@@ -55,7 +69,19 @@
                 <div class="food-text">
                         <p class="item-name">Veg Chowmien</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -63,7 +89,19 @@
                 <div class="food-text">
                         <p class="item-name">Egg Chowmien</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -71,7 +109,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Chowmien</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>
@@ -85,7 +135,19 @@
                 <div class="food-text">
                         <p class="item-name">Veg MoMo</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -93,7 +155,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Steam MoMo</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -109,7 +183,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Fry MoMo</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -117,7 +203,19 @@
                 <div class="food-text">
                         <p class="item-name">Buff MoMo</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>
@@ -131,7 +229,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Lollipop</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -139,7 +249,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Hot Wings</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -147,7 +269,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Leg Piece</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -155,7 +289,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Curry</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>
@@ -169,7 +315,19 @@
                 <div class="food-text">
                         <p class="item-name">Veg fryrice</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -177,7 +335,19 @@
                 <div class="food-text">
                         <p class="item-name">Egg fryrice</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -185,7 +355,19 @@
                 <div class="food-text">
                         <p class="item-name">Chicken fryrice</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -193,7 +375,19 @@
                 <div class="food-text">
                         <p class="item-name">Buff fryrice</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>
@@ -207,7 +401,19 @@
                 <div class="food-text">
                         <p class="item-name">Vegetable Salad</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -215,7 +421,19 @@
                 <div class="food-text">
                         <p class="item-name">Russian Salad</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -223,7 +441,19 @@
                 <div class="food-text">
                         <p class="item-name">Fruits Salad</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>
@@ -237,7 +467,19 @@
                 <div class="food-text">
                         <p class="item-name">Veg Khaja Set</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
@@ -245,15 +487,39 @@
                 <div class="food-text">
                         <p class="item-name">Chicken Combo</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
             <div class="food-div">
                 <div class="food-img kau3"></div>
-                <div class="food-text">
-                        <p class="item-name">Mixed Special</p>
+                <div class="food-text" method="POST">
+                        <p class="item-name" name="items">Mixed Special</p>
                         <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                        {% if username %}
+                        <a href="{% url 'order' %}">
+                            <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% else%}
+                        <a href="{% url 'login' %}">
+                                <button class="order-btn">
+                        Order now
+                    </button>
+                    </a>
+                        {% endif %}
                 </div>
             </div>
         </div>

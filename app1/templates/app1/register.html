@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'app1/signup.css' %}">
+    <title>Sign up</title>
+</head>
+<body>
+    <div id="my"><h3><a href="{% url 'landing' %}"><img src="{% static 'app1/images/ChatGPT Image Apr 1, 2026, 06_55_01 AM.png' %}" alt="" height="80px" width="130px"></h3></a></div>
+    <div id="main">
+        <div id="word"><img id="smile" src="Star-Struck--Streamline-Kawaii-Emoji.png" height="50px" alt=""><h2>Sign up for free and enjoy the best experience!
+    </h2>
+      <div id="update">
+        <img src="Fast-Food-Double-Burger--Streamline-Ultimate.png" style="margin-top: 30px;" height="30px" alt="">
+          <p style="font-family: cursive;">Enjoy delicious meals every day</p>
+        </div>
+        <div id="e"><img src="Smiley-Smile--Streamline-Ultimate.png" style="margin-top: 30px;" height="30px" alt=""><p style="font-family: cursive;">Make every moment enjoyable</p></div>
+    <div id="t"><img src="Asian-Food-Soup--Streamline-Ultimate.png" style="margin-top: 30px;" height="30px" alt=""><p style="font-family: cursive;">Discover your favorite foods</p></div>
+     <div id="fun"><img src="Delivery-Person-Motorcycle--Streamline-Ultimate.png" style="margin-top: 30px;" height="30px"  alt=""><p style="font-family: cursive;">Fast delivery at the best prices</p></div>    
+</div>
+    
+    <div id="container">
+        <div id="log"><div id="sign"><h2>Sign Up</h2></div>
+       </div>
+<form action="" method="POST">
+    {% csrf_token %}
+      <div class="contain">
+        
+            <input type="username" id="username" name="username" placeholder="" autofocus autocomplete="off" required>
+            <label for="username"><i class="ri-user-3-line"></i>  full name</label>
+         </div>
+
+        <div class="contain">
+            
+                <input type="email" name="email" id="email" placeholder="" autofocus autocomplete="off" required>
+                <label for="email"><i class="ri-mail-send-fill"></i>  enter email</label>
+        </div>
+
+        <div class="contain">
+            <input type="text" id="number" name="number" placeholder="" autofocus autocomplete="off" required>
+            <label for="number"><i class="ri-phone-fill"></i>  98XXXXXX60</label>
+
+        </div>
+
+        <div class="contain">
+            
+            <input type="password" name="password"  id="password" placeholder="" autofocus autocomplete="off" required>
+            <label for="password"><i class="ri-lock-fill"></i>  password</label>
+        </div>
+        <div class="contain">
+            
+            <input type="password" name="confrim-password"  id="password" placeholder="" autofocus autocomplete="off" required>
+            <label for="password"><i class="ri-lock-fill"></i>  confirm-password</label>
+        </div>
+        
+        
+
+        <div id="checkbox"><input type="checkbox" name="term" autofocus autocomplete="off" required><p>I agree to Terms & Conditions</p> </div>
+        {% if messeges %}
+        <p style="color:red;">{{ messeges }}</p>
+        {% endif %}
+        <br>
+        <div id="login"><button class="lgn">sign up</button></div>
+        <br>
+        
+        </form>
+
+        <div id="other"><p id="p2" >----------------------Or----------------------</p>
+            <div id="other2">
+            
+           <img src="Google-Icon--Streamline-Svg-Logos.png" alt=""><p id="p1">Sign up with google</p>
+            
+        </div>
+
+     
+        
+    </div>
+    <div id="next"><p>Already have an account..?</p><a href="{% url 'login' %}">Sign in</a></div>
+    
+</div>
+    
+</body>
+</html>

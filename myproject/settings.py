@@ -124,3 +124,5 @@ import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+SESSION_COOKIE_AGE = 3600
