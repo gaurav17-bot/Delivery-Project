@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'app1/login.css' %}">
+    <title>Login page</title>
+</head>
+<body>
+    <div id="my"><a href="{% url 'landing' %}"> <img src="{% static 'app1/images/ChatGPT Image Apr 1, 2026, 06_55_01 AM.png' %}" height="80px" alt=""></a></div></div>
+    <div id="main">
+    <div id="container">
+        <div id="log"><div id="sign"><h2>Sign In</h2></div>
+    </div>
+    <form action="" method="POST"> 
+        {% csrf_token %}
+        <div class="contain">
+                <input type="email" name="email" id="username" placeholder="" autofocus autocomplete="off" required>
+                <label for="username"><i class="ri-lock-fill"></i>  email</label>
+                
+        </div>
+        <div class="contain">
+            
+            <input type="password" name="password"  id="password" placeholder="" autofocus autocomplete="off" required>
+            <label for="password"><i class="ri-user-3-line"></i>password</label>
+        </div>
+        <div id="forget"><a href="#">forget password?</a></div>
+        <div id="checkbox"><input name="terms" type="checkbox" required><p>Remember me?.</p> </div>
+
+        <br>
+        <div id="login"><button class="lgn">login</button></div>
+        {% if messages %}
+        {% for message in messages %}
+            <p style="color:red; margin-left: 100px; margin-top: 20px;">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        <br>
+        <div id="other">
+            <p id="p2">----------------------or----------------------</p>
+            <div id="other2">
+            
+            <img src="Google-Icon--Streamline-Svg-Logos.png" alt=""><a  id="p1">Sign in with google</a>
+            
+        </div><br>
+    </div>
+</form>
+    <div id="next"><p>Need an account..? </p><a href="{% url 'register' %}">Sign up</a></div>
+</div>
+    
+
+
+
+
+
+</body>
+</html>

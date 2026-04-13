@@ -1,125 +1,108 @@
-from django.shortcuts import render, redirect
-
-from django.shortcuts import render, redirect
-from .models import FoodItem, Order, OrderItem
+from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate, login
+from .models import Customer
+from django.contrib import messages
+from django.contrib.auth import logout
+from .restrict import redirect_if_logged_in,noentry_order
 
 
 def landing_page(request):
-    return render(request, 'app1/landing.html')
+    admin = request.session.get('admin_username')
+    username = request.session.get('user_username')
+    return render(request, 'app1/landing.html',{'username':username,'admin':admin})
 
 
 def kausik(request):
-    items = FoodItem.objects.all()
-    return render(request, 'app1/kausik.html', {'items': items})
-
+    username = request.session.get('user_username')
+    return render(request, 'app1/kausik.html',{'username':username})
 
 def chiyaguff(request):
-    return render(request, 'app1/chiyaguff.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/chiyaguff.html',{'username':username})
 
 
 def chiyachautari(request):
-    return render(request, 'app1/chiyachautari.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/chiyachautari.html',{'username':username})
+
 
 
 def siddhartha(request):
-    return render(request, 'app1/siddhartha.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/siddhartha.html',{'username':username})
 
 
 def sinka(request):
-    return render(request, 'app1/sinka.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/sinka.html',{'username':username})
+
 
 
 def suva(request):
-    return render(request, 'app1/suva.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/suva.html',{'username':username})
+
 
 
 def swadghar(request):
-    return render(request, 'app1/swadghar.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/swadghar.html',{'username':username})
+
 
 
 def chakatti(request):
-    return render(request, 'app1/chakatti.html')
+    username = request.session.get('user_username')
+    return render(request, 'app1/chakatti.html',{'username':username})
+
+@redirect_if_logged_in
+def login(request):
+    if request.method=="POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        try:
+            user = Customer.objects.get(email=email,password=password)
+
+            request.session['user_id'] = user.id
+            request.session['user_username'] = user.username
+            return redirect('landing')
+        except Customer.DoesNotExist:
+            messages.error(request,'Invalid password or email !') 
+            return redirect('login')
+        
+    return render(request, 'app1/login.html')
+
+@redirect_if_logged_in
+def register(request):
+    if request.method=="POST":
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        number = request.POST.get('number')
+        password = request.POST.get('password')
+        confrim_password = request.POST.get('confrim-password')
+
+        if password!=confrim_password:
+            messages.error(request,'password didnot match')
+            return redirect('register')
+        
+
+        customer  = Customer (
+            username = username,
+            email = email,
+            number = number,
+            password = password,
+        )
+
+        customer.save()
+        return redirect('login')
+    return render(request, 'app1/register.html')
 
 
+def logout_view(request):
+    request.session.flush()
+    return redirect('landing')
 
-# cart showing
-from django.http import JsonResponse
-
-from django.http import JsonResponse
-
-def add_to_cart(request, id):
-    cart = request.session.get('cart', {})
-
-    if str(id) in cart:
-        cart[str(id)] += 1
-    else:
-        cart[str(id)] = 1
-
-    request.session['cart'] = cart
-
-    return JsonResponse({
-        'status': 'success',
-        'message': 'Item added to cart!'
-    })
-
-
-# cart items
-def cart_view(request):
-    cart = request.session.get('cart', {})
-    items = []
-    total = 0
-
-    for id, qty in cart.items():
-        food = FoodItem.objects.get(id=id)
-        total += food.price * qty
-        items.append({
-            'food':food,
-            'qty':qty
-          })
-
-    return render(request, 'app1/cart.html', {
-        'items':items,
-        'total':total
-       })
-
-
-# for upadting cart
-def update_cart(request, id, action):
-    cart = request.session.get('cart', {})
-
-    if str(id) in cart:
-        if action == 'add':
-            cart[str(id)] += 1
-        elif action =='remove':
-            cart[str(id)] -= 1
-
-        if cart[str(id)] <= 0:
-            del cart[str(id)]
-
-    request.session['cart'] = cart
-    return redirect('cart')
-
-
-# its checkout section
-def checkout(request):
-    cart = request.session.get('cart', {})
-    total = 0
-
-    order = Order.objects.create(total_price=0)
-
-    for id, qty in cart.items():
-        food = FoodItem.objects.get(id=id)
-        total += food.price * qty
-
-        OrderItem.objects.create(
-            order=order,
-            food_item=food,
-            quantity=qty
-       )
-
-    order.total_price = total
-    order.save()
-
-    request.session['cart'] = {}
-
-    return render(request, 'app1/sucess.html', {'order': order})
+@noentry_order
+def order(request):
+    username = request.session.get('user_username')
+    return render(request, 'app1/order.html',{'username':username})

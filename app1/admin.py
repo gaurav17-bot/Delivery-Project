@@ -4,3 +4,8 @@ from .models import FoodItem, Order, OrderItem
 admin.site.register(FoodItem)
 admin.site.register(Order)
 admin.site.register(OrderItem)
+# Register your models here.
+
+from .models import Customer
+
+admin.site.register(Customer)
