@@ -15,16 +15,22 @@
     {#  navigation part  #}
     <nav class="navbar">
         <div class="logo">
-            <img src="{% static 'app1/images/logo.png' %}" alt="logo">
+            <a href="{%url 'landing'%}"> <img src="{% static 'app1/images/logo.png' %}" alt="logo"></a>
+
         </div>
 
+        <div class="menu">
+            <a href="{% url 'landing' %}" class="hover-links">Home</a>
+            <a href="{% url 'cart' %}" class="hover-links">Cart</a>
+        </div>
+        
         <section class="search">
         <div class="search-box">
                 <input type="text" placeholder="Search for food items..." />
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </section>
-
+      
         <div class="auth">
             <a href="#" class="login">Login</a>
             <a href="#" class="register">Register</a>    
@@ -37,7 +43,7 @@
             <div class="h-text h">
                 <h2>Kaushik- Garden Restaurant </h2> <br>
                 <p><i class="fa-solid fa-location-dot"></i> Khajura, Surkhet</p>
-        </div>
+            </div>
         </div>
     </section>
 
@@ -45,219 +51,37 @@
         <p>Menu</p>
     </section>
  
-    <section class="menu-items">
- {#  cart for chowmin  #}
-        <p class="category">Chowmin Items</p>
+<section class="menu-items">
+
+    {% regroup items by category as category_list %}
+
+    {% for category in category_list %}
+        <p class="category">{{ category.grouper }}</p>
+
         <div class="main-food">
 
+            {% for item in category.list %}
             <div class="food-div">
-                <div class="food-img ch1"></div>
+                <div class="food-img" style="background-image:url('{{ item.image.url }}')"></div>
+                
                 <div class="food-text">
-                        <p class="item-name">Veg Chowmien</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
+                    <p class="item-name">{{ item.name }}</p>
+                    <p class="item-price">Rs. {{ item.price }}</p>
+
+<button class="order-btn" onclick="addToCart({{ item.id }})">
+    Order now
+</button>
                 </div>
             </div>
-            <div class="food-div">
-                <div class="food-img ch2"></div>
-                <div class="food-text">
-                        <p class="item-name">Egg Chowmien</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img ch3"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Chowmien</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
+
         <hr>
-{#  cart for momo  #}
-        <p class="category">MoMo Items</p>
-        <div class="main-food">
+    {% endfor %}
 
-            <div class="food-div">
-                <div class="food-img momo1"></div>
-                <div class="food-text">
-                        <p class="item-name">Veg MoMo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img momo2"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Steam MoMo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img momo3"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Jhol MoMo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img momo4"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Fry MoMo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img momo5"></div>
-                <div class="food-text">
-                        <p class="item-name">Buff MoMo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-{#  cart for chicken items  #}
-        <p class="category">Chicken Items</p>
-        <div class="main-food">
+</section>
 
-            <div class="food-div">
-                <div class="food-img chi1"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Lollipop</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img chi2"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Hot Wings</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img chi3"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Leg Piece</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img chi4"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Curry</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-{#  cart for fry rice  #}
-        <p class="category">Fry Rice</p>
-        <div class="main-food">
-
-            <div class="food-div">
-                <div class="food-img fr1"></div>
-                <div class="food-text">
-                        <p class="item-name">Veg fryrice</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img fr2"></div>
-                <div class="food-text">
-                        <p class="item-name">Egg fryrice</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img fr3"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken fryrice</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img fr4"></div>
-                <div class="food-text">
-                        <p class="item-name">Buff fryrice</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-{#  cart for salad items  #}
-        <p class="category">Salad Items</p>
-        <div class="main-food">
-
-            <div class="food-div">
-                <div class="food-img s1"></div>
-                <div class="food-text">
-                        <p class="item-name">Vegetable Salad</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img s2"></div>
-                <div class="food-text">
-                        <p class="item-name">Russian Salad</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img s3"></div>
-                <div class="food-text">
-                        <p class="item-name">Fruits Salad</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-{#  kaushik special items  #}
-        <p class="category">Kaushik Specials</p>
-        <div class="main-food">
-
-            <div class="food-div">
-                <div class="food-img kau1"></div>
-                <div class="food-text">
-                        <p class="item-name">Veg Khaja Set</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img kau2"></div>
-                <div class="food-text">
-                        <p class="item-name">Chicken Combo</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-            <div class="food-div">
-                <div class="food-img kau3"></div>
-                <div class="food-text">
-                        <p class="item-name">Mixed Special</p>
-                        <p class="price">Rs.</p>
-                        <button class="order-btn">Order now</button>
-                </div>
-            </div>
-        </div>
-    </section>
     <hr>
 
     <section class="contact" id="contact">
@@ -287,4 +111,33 @@
         <p class="copyright">&copy; स्वादTrip Pvt.Ltd. All Rights Reserved.</p>
     </footer>
 
+
+<script>
+function addToCart(id) {
+    fetch(`/add-to-cart/${id}/`)
+    .then(response => response.json())
+    .then(data => {
+        showMessage(data.message);
+    });
+}
+
+function showMessage(msg) {
+    const box = document.createElement("div");
+    box.innerText = msg;
+    box.style.position = "fixed";
+    box.style.bottom = "20px";
+    box.style.right = "20px";
+    box.style.background = "#28a745";
+    box.style.color = "white";
+    box.style.padding = "10px 20px";
+    box.style.borderRadius = "5px";
+    box.style.zIndex = "9999";
+
+    document.body.appendChild(box);
+
+    setTimeout(() => {
+        box.remove();
+    }, 2000);
+}
+</script>
 </body>

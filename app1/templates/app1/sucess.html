@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <link rel="stylesheet" href="{% static 'app1/success.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="success-main">
+    <div class="success-card">
+        <div class="logo">
+            <a href="{%url 'landing'%}"><img src="{% static 'app1/images/logo.png' %}" alt="logo"></a>
+        </div>
+        <h1 class="success-title">Order Placed Successfully!</h1>
+        
+        <div class="order-information">
+            <p>Order ID: <strong>#{{ order.id }}</strong></p>
+            <p>Amount Paid: <span class="amount">Rs. {{ order.total_price }}</span></p>
+        </div>
+
+        <p class="thank-you-msg">Thankyou for ordering from us!</p>
+
+        <a href="{% url 'kausik' %}" class="back-link">
+            <button class="btn-continue">Back to Menu</button>
+        </a>
+    </div>
+</div>
+    
+</body>
+</html>

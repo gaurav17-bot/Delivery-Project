@@ -10,5 +10,10 @@ urlpatterns = [
     path('sinka/', views.sinka, name='sinka'),
     path('suva/', views.suva, name='suva'),
     path('swadghar/', views.swadghar, name='swadghar'),
-    path('chakatti/', views.swadghar, name='chakatti'),
+    path('chakatti/', views.chakatti, name='chakatti'),
+#  this is ordering part
+    path('add-to-cart/<int:id>/', views.add_to_cart, name='add_to_cart'),
+    path('cart/', views.cart_view, name='cart'),
+    path('update-cart/<int:id>/<str:action>/', views.update_cart, name='update_cart'),
+    path('checkout/', views.checkout, name='checkout'),
 ]

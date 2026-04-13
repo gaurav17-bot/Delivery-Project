@@ -15,12 +15,12 @@
     {#  navigation part  #}
 <nav class="navbar">
     <div class="logo">
-        <img src="{% static 'app1/images/logo.png' %}" alt="logo">
+       <a href="{%url 'landing'%}"> <img src="{% static 'app1/images/logo.png' %}" alt="logo"></a>
     </div>
 
     <ul class="menu" id="menu">
         <li><a href="#home" class="hover-links">Home</a></li>
-        <li><a href="#" class="hover-links">Officials</a></li>
+        <li><a href="{% url 'cart' %}" class="">Cart</a></li>
         <li><a href="#explore" class="hover-links">Explore Us</a></li>
         <li><a href="#about" class="hover-links">About</a></li>
         <li><a href="#contact" class="hover-links">Contact</a></li>
@@ -47,7 +47,7 @@
             <span>Fast</span>
         </h1>
         <p>Hungry? Order anytime, anywhere — we’ll deliver it everywhere!</p>
-        <button class="btn-explore">Explore Now</button>
+        <div class="btn-explore"><a href="#explore" class=" hover-links">Explore Now</a></div>
     </div>
 </section>
 

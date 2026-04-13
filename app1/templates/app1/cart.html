@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{% static 'app1/cartstyle.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{%url 'landing'%}"> <img src="{% static 'app1/images/logo.png' %}" alt="logo"></a>
+        </div>
+        <a href="{% url 'kausik' %}" class="hover-links">Menu</a>
+
+    </nav>
+    <div class="cart-main">
+        <h1 class="cart-title">Your Cart</h1>
+
+        <div class="cart-card">
+            {% for item in items %}
+            <div class="cart-item">
+                <div class="item-details">
+                    <span class="item-name">{{ item.food.name }}</span>
+                    <span class="item-price">Rs. {{ item.food.price }}</span>
+                </div>
+
+                <div class="quantity-pick">
+                    <a href="{% url 'update_cart' item.food.id 'remove' %}" class="qty-btn decrease">-</a>
+                    <span class="qty-number">{{ item.qty }}</span>
+                    <a href="{% url 'update_cart' item.food.id 'add' %}" class="qty-btn increase">+</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="cart-total">
+                <div class="total-row">
+                    <span>Total Amount</span>
+                    <span class="total-amount">Rs. {{ total }}</span>
+                </div>
+                
+                <a href="{% url 'checkout' %}" class="checkout-link">
+                    <button class="btn-checkout">Checkout Now</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
