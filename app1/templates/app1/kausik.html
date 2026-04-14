@@ -52,8 +52,8 @@
     </nav>
 
     <section class="bgimg">
-        <div class=" spot bg">
-            <div class="h-logo h"></div>
+        <div class="spot kausik">
+            <div class="h-logo h" style="background-image: url('/media/hotels/kausik.jpg');"></div>
             <div class="h-text h">
                 <h2>Kaushik- Garden Restaurant </h2> <br>
                 <p><i class="fa-solid fa-location-dot"></i> Khajura, Surkhet</p>
@@ -83,7 +83,7 @@
                     <p class="item-price">Rs. {{ item.price }}</p>
 
 <button class="order-btn" onclick="addToCart({{ item.id }})">
-    Order now
+    Add to Cart
 </button>
                 </div>
             </div>
@@ -151,7 +151,7 @@ function showMessage(msg) {
 
     setTimeout(() => {
         box.remove();
-    }, 2000);
+    }, 500);
 }
 </script>
 </body>

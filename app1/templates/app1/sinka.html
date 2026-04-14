@@ -1,4 +1,4 @@
-{% load static %}
+{#  {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@
 </head>
 <body>
      {#  navigation part  #}
-    <nav class="navbar">
+    {#  <nav class="navbar">
         <div class="logo">
             <img src="{% static 'app1/images/logo.png' %}" alt="logo">
         </div>
@@ -44,4 +44,163 @@
     </nav>
     <p>Sinka</p>
 </body>
-</html>
+</html>   #}
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'app1/hotels.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+    />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<title>Kausik</title>
+</head>
+
+<body>
+
+    {#  navigation part  #}
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{%url 'landing'%}"> <img src="{% static 'app1/images/logo.png' %}" alt="logo"></a>
+
+        </div>
+
+        <div class="menu">
+            <a href="{% url 'landing' %}" class="hover-links">Home</a>
+            <a href="{% url 'cart' %}" class="hover-links">Cart</a>
+        </div>
+        
+        <section class="search">
+        <div class="search-box">
+                <input type="text" placeholder="Search for food items..." />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </section>
+      
+        <div class="auth">
+            {% if username %}
+            <div style="display: flex; ">
+                <div class="user" style="display:  flex; gap: 10px; margin-right: 20px ;align-items: center; flex-direction: column; margin-bottom: 5px;">
+                    <i class="ri-user-fill" style="border: 1px solid rgb(210, 210, 210); padding: 10px; border-radius: 50%; background-color: rgb(224, 224, 224); font-size: 10px;"></i> <p style="  font-family: Arial, Helvetica, sans-serif;"> {{ username }}</p>
+                </div>
+                <a href="{% url 'logout' %}" style=" font-size: large; text-decoration: none; margin-right: -20px; border-radius: 10px; padding: 5px 20px; height: 40px; margin-top:10px ; " class="login">Logout</a>
+            </div>
+
+            {% else %}
+            <a href="{% url 'login' %}" class="login" style=" font-size: large; margin-right:  ; text-decoration: none; border-radius: 10px; padding: 10px 50px;">Login</a>
+            <a href="{% url 'register' %}" class="register" style=" font-size: large; text-decoration: none; margin-right: -20px; border-radius: 10px; padding: 10px 50px;">Register</a>    
+            {% endif %}   
+        </div>
+    </nav>
+
+    <section class="bgimg">
+         <div class="spot sinka">
+           <div class="h-logo h" style="background-image: url('/media/hotels/sinka.png');"></div>
+            <div class="h-text h">
+                <h2>Sinkaa </h2> <br>
+                <p><i class="fa-solid fa-location-dot"></i> Airpot, Surkhet</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="menu-bar">
+        <p>Menu</p>
+    </section>
+ 
+<section class="menu-items">
+
+    {% regroup items by category as category_list %}
+
+    {% for category in category_list %}
+        <p class="category">{{ category.grouper }}</p>
+
+        <div class="main-food">
+
+            {% for item in category.list %}
+            <div class="food-div">
+                <div class="food-img" style="background-image:url('{{ item.image.url }}')"></div>
+                
+                <div class="food-text">
+                    <p class="item-name">{{ item.name }}</p>
+                    <p class="item-price">Rs. {{ item.price }}</p>
+
+<button class="order-btn" onclick="addToCart({{ item.id }})">
+   Add to Cart
+</button>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <hr>
+    {% endfor %}
+
+</section>
+
+    <hr>
+
+    <section class="contact" id="contact">
+        <ul class="contact-items"><p>WE'RE स्वादTrip</p>
+            <li class="a"><a href=""></a>About Us</li>
+            <li class="a"><a href=""></a>Delivery Charges</li>     
+        </ul>
+        <hr>
+        <ul class="contact-items"><p>GET HELP</p>
+            <li class="a"><a href=""></a>How to Order?</li>
+            <li class="a"><a href=""></a>FAQs</li>
+            <li class="a"><a href=""></a>Contact Us</li>
+        </ul>
+        <hr>
+        <ul class="contact-items"><p>REACH US</p>
+            <li>We are initially serving in Surkhet and</li>
+            <li>studying for expand of the reach in</li>
+            <li class="b">other major cities all over the Nepal.</li>
+            <p>Contact details</p>
+            <li>98XXXXXXXX,053-XXXXX,</li>
+            <li>XXXXX,+977-XXXXXXXXX</li>
+        </ul>
+    </section>
+    {#  footer section  #}
+    <footer>
+        <hr>
+        <p class="copyright">&copy; स्वादTrip Pvt.Ltd. All Rights Reserved.</p>
+    </footer>
+
+
+<script>
+function addToCart(id) {
+    fetch(`/add-to-cart/${id}/`)
+    .then(response => response.json())
+    .then(data => {
+        showMessage(data.message);
+    });
+}
+
+function showMessage(msg) {
+    const box = document.createElement("div");
+    box.innerText = msg;
+    box.style.position = "fixed";
+    box.style.bottom = "20px";
+    box.style.right = "20px";
+    box.style.background = "#28a745";
+    box.style.color = "white";
+    box.style.padding = "10px 20px";
+    box.style.borderRadius = "5px";
+    box.style.zIndex = "9999";
+
+    document.body.appendChild(box);
+
+    setTimeout(() => {
+        box.remove();
+    }, 500);
+}
+</script>
+</body>

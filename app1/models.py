@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 
 class FoodItem(models.Model):
+    hotel = models.ForeignKey('Hotel', on_delete=models.CASCADE)  
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     image = models.ImageField(upload_to='food_images/')
@@ -10,7 +11,6 @@ class FoodItem(models.Model):
     def __str__(self):
         return self.name
 
-
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.IntegerField()
@@ -18,13 +18,10 @@ class Order(models.Model):
     def __str__(self):
         return f"Order {self.id}"
 
-
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     food_item = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-# Create your models here.
-
 
 class Customer(models.Model):
     username = models.CharField(max_length=50, unique=True)
@@ -41,7 +38,11 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.username
-    
 
+class Hotel(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='hotels/')
+    slug = models.SlugField(unique=True)
 
-# class menu(models.Model):
+    def __str__(self):
+        return self.name

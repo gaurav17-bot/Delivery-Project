@@ -166,3 +166,54 @@ body {
 .btn-checkout:hover {
     transform: scale(1.03);
 }
+
+/* --- New CSS for Hotel Grouping --- */
+
+.hotel-section {
+    margin-bottom: 20px;
+    border: 1px solid #fdf2e9; /* Matches your item border */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.hotel-header {
+    background-color: #fff5f0; /* Very light orange tint */
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #fdf2e9;
+}
+
+.hotel-header i {
+    color: #f04646; /* Matches your cart title red */
+    font-size: 1.1rem;
+}
+
+.hotel-header span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Added padding for items when inside a hotel section */
+.hotel-section .cart-item {
+    padding: 15px;
+}
+
+/* Empty Cart Styling */
+.empty-cart {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+}
+
+.empty-cart i {
+    font-size: 3rem;
+    color: #fdf2e9;
+    margin-bottom: 10px;
+    display: block;
+}
+/* ---------------------------------- */

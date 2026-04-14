@@ -237,139 +237,73 @@ body {
     transform: scale(1.05);
 }
 
-/* 
-hotels and cafes carts  */
 .spot-cart {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 20px 100px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
+    gap: 20px;
     justify-content: center;
-    margin: 0 auto;
+    padding: 30px;
 }
 
 .spot {
-    height: 15rem;
-    width: 15rem;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin-bottom: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    color: white;
+    width: 220px;
+    height: 200px;
+
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    background-size: cover;
+    background-position: center;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: 0.3s;
 }
 
 .spot:hover {
     transform: scale(1.05);
 }
 
-.one {
-    background: url("../app1/images/kausik.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.two {
-    background: url("../app1/images/swad.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.three {
-    background: url("../app1/images/suva.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.four {
-    background: url("../app1/images/siddhartha.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.five {
-    background: url("../app1/images/sinka.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.six {
-    background: url("../app1/images/chakatti.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.seven {
-    background: url("../app1/images/chiyaguff.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-.eight {
-    background: url("../app1/images/chiyachautari.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: last baseline;
-    justify-content: center;
-    text-align: center;
-}
-
-/* menu button in cart */
+/* BUTTON */
 .btn-menu {
-    padding: 5px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+
+    padding: 5px 15px;
     border: none;
     background: linear-gradient(45deg, orange, orangered);
     color: white;
     border-radius: 20px;
-    cursor: pointer;
     text-decoration: none;
+    font-size: 12px;
+    display: inline-block; /* FIX stretch issue */
+
     transition: all 0.3s ease-in-out;
 }
 
 .btn-menu:hover {
     transform: scale(1.1);
 }
+/* ================= RESPONSIVE ================= */
+/* @media (max-width: 480px) {
+    .spot-img {
+        height: 130px;
+    }
 
+    .spot-title {
+        font-size: 0.9rem;
+    }
+
+    .btn-menu {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+} */
 /* about us section */
 
 .about {

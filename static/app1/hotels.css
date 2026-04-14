@@ -120,14 +120,23 @@ body {
 }
 
 /* main background image of venue */
-.bg{
+.kausik{
     background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0) 100%),
     url("../app1/images/kausikbg.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    /* align-items: last baseline; */
+    text-align: center;
+}
+
+.sinka{
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 30%, rgba(0,0,0,0) 100%),
+    url("/media/hotels/sinkabg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
     text-align: center;
 }
 
@@ -142,13 +151,11 @@ body {
 }
 
 .h-logo{
-    height:5rem;
-    width:5rem;
-    background: 
-    url("../app1/images/kausik.jpg");
     background-size: cover;
     background-position:center;
     background-repeat: no-repeat;
+    height:5rem;
+    width:5rem;
     margin-left: 10rem;
 }
 
@@ -158,6 +165,17 @@ body {
 .h{
      margin-top:28rem;
     
+}
+
+all hotels and cafe logos
+.kausik-logo{
+
+
+}
+
+.sinka-logo{
+    background: 
+    url("../app1/images/sinka.png");
 }
 
 .menu-bar p{

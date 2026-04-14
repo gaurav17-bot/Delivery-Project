@@ -78,31 +78,17 @@
     </div>
 </section>
 
-<section class="spot-cart" id="spot-cart" >
-    <div class="spot one">
-            <a href="{% url 'kausik' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot two">
-        <a href="{% url 'swadghar' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot three">
-        <a href="{% url 'suva' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot four">
-        <a href="{% url 'siddhartha' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot five">
-        <<a href="{% url 'sinka' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot six">
-        <a href="{% url 'chakatti' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot seven">
-        <a href="{% url 'chiyaguff' %}" class="btn-menu">Explore Menu</a>
-    </div>
-    <div class="spot eight">
-       <a href="{% url 'chiyachautari' %}" class="btn-menu">Explore Menu</a>
-    </div>
+{#  hotels  #}
+<section class="spot-cart" id="spot-cart">
+    {% for hotel in hotels %}
+        <div class="spot" style="background-image: url('{{ hotel.image.url }}');">
+
+            <a href="{% url 'hotel_detail' hotel.slug %}" class="btn-menu">
+                Explore Menu
+            </a>
+
+        </div>
+    {% endfor %}
 </section>
 
 {#  about us section  #}
@@ -144,10 +130,6 @@
     <hr>
     <p class="copyright">&copy; स्वादTrip Pvt.Ltd. All Rights Reserved.</p>
 </footer>
-
-
-
-
 
 <script>
 
